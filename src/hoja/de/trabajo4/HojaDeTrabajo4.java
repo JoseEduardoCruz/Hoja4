@@ -10,11 +10,13 @@ package hoja.de.trabajo4;
  *
  * @author Jose
  */
-public abstract class Pila <T> {
-    public T valor;
-    
-    abstract public void push();    
-    
-    abstract public T[] pop();
+public class HojaDeTrabajo4 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
     
 }

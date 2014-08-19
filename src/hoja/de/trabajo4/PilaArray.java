@@ -10,11 +10,17 @@ package hoja.de.trabajo4;
  *
  * @author Jose
  */
-public abstract class Pila <T> {
-    public T valor;
+public class PilaArray<T> {
+    public T[] arreglo;
+    public int valor=10;
     
-    abstract public void push();    
+    public PilaArray(int valor)
+    {
+    this.valor=valor;
+    Object[] arreglo = new Object[valor];
+    }
     
-    abstract public T[] pop();
+    public void push();
     
+     public T[] pop();
 }
