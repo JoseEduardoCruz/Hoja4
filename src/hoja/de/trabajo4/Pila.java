@@ -12,9 +12,12 @@ package hoja.de.trabajo4;
  */
 public abstract class Pila <T> {
     public T valor;
+    public T[] lista;
     
-    abstract public void push();    
+    abstract public void push(T valor,int contador);    
     
-    abstract public T[] pop();
+    abstract public char[] pop();
+    
+    abstract public int total(char[] lista);
     
 }

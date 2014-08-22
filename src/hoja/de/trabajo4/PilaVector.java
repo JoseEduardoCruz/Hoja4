@@ -6,57 +6,65 @@
 
 package hoja.de.trabajo4;
 
+import java.util.Vector;
+
 /**
  *
  * @author Jose
  */
-public class PilaArray<T> extends Pila {
-    public char[] arreglo1,lista;
-    public int valor=100;
-    public int contador=50;
+public class PilaVector<T> extends Pila {
+    public int cant;
+     public int operando, operando2;
+    public int resultado,res,total;
+    public int contador=0;
+    private String signo;
     public T cosa;
-    private int n=0,m=1,total,i=0;
+    public char[] lista;
+    Vector vec;
+    Vector vec2;
+    private int n=0,m=1;
     private char op1,op2,op3;
-    public int operando, operando2;
-    public int resultado,res,cant;
-    public String signo,sig,linea;
     
-    char[] arreglo = new char[valor];
-    char[] arreglo2 = new char[]{' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
-    public PilaArray(int valor)
+    public PilaVector(int cant)
     {
-    this.valor=valor;
+    this.cant=cant;
+    vec = new Vector(cant);
     
     }
-        
-     public char[] pop()
-     {
-     return arreglo;
-     }
+    
 
-    @Override
-    public void push(Object cosa,int contador) {
-        this.cosa=(T) cosa;
+
+    public void push(Object valor, int contador) {
+        this.valor=valor;
         this.contador=contador;
-        
-        arreglo[contador]=(char) cosa;
-        arreglo2[contador]=arreglo[contador];
-        System.out.print(""+arreglo);
-        System.out.print(""+arreglo2+"\n");
-        i=i+1;
+    vec.add(valor);
     }
 
-    @Override
+    
+    public char[] pop() {
+        char[] vec1 = new char[cant];
+        vec2 = new Vector(cant);
+        for (int i=0; i<cant; i++)
+        {
+        vec1[i]=(char) vec.get(i);
+        }
+        return vec1;
+    }
+
+    
     public int total(char[] lista) {
-        this.lista=lista;
         
-        op1=(char) lista[n];
+        for (int i=0; i<cant; i++)
+        {
+        vec2.add(lista[i]);
+        }
+       op1=(char) vec2.get(n);
     int operando = Character.getNumericValue(op1);
     
-    op2=(char) lista[m];
+    op2=(char) vec2.get(m);
     int resultado = Character.getNumericValue(op2);
     
-    op3=(char) lista[m+1];
+    op3=(char) vec2.get(m+1);
     String signo = String.valueOf(op3);
     
     total=Operacion(operando,resultado,signo);
@@ -68,10 +76,10 @@ public class PilaArray<T> extends Pila {
     for(int m=3 ;n<cant;n++)
         
     {    
-    op2=(char) lista[m];//obtiene el numero a operar
+    op2=(char) vec.get(m);//obtiene el numero a operar
     int operando2 = Character.getNumericValue(op2);
     
-    op3=(char) lista[n];//obtiene el operando
+    op3=(char) vec.get(n);//obtiene el operando
     String sig = String.valueOf(op3);
     res=total;
     //se obtiene el valor ed la operacion
@@ -79,12 +87,11 @@ public class PilaArray<T> extends Pila {
     //se aumentan los contadores
     n=n+1;
     m=m+2;
-    
+    }    
+        return total;
     }
-     return total;   
-    }
     
-     private int Operacion(int operando,int resultado, String signo )
+    private int Operacion(int operando,int resultado, String signo )
     {
     this.operando=operando;
     this.resultado=resultado;
